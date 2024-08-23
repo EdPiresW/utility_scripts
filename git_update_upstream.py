@@ -55,10 +55,10 @@ def add_remote(upstream_url):
     except subprocess.CalledProcessError as e:
         print(f"Error adding upstream: {e}")
 
-def git_fetch(target_branch):
+def git_fetch():
     try:
-        LOGGER.info("Fetch changes from target branch: %s", target_branch)
-        subprocess.check_call(["git", "fetch", target_branch])
+        LOGGER.info("Fetch changes from target branch: upstream")
+        subprocess.check_call(["git", "fetch", "upstream"])
     except subprocess.CalledProcessError as e:
         print(f"Error fetching: {e}")
 
@@ -85,7 +85,7 @@ def main():
 
     # Get user input for the target branch
     target_branch = input("Target branch: ")
-    git_fetch(target_branch)
+    git_fetch()
     git_checkout(target_branch)
     git_rebase(target_branch)
 
